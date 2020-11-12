@@ -198,27 +198,27 @@ def create_quiz():
     return post(URLS["CREATE_QUIZ"], {"questions": questions_data})["quizNumber"]
 
 
-if __name__ == "__main__":
-    index, option = picker(["View user answers", "Grade user answers",
-                            "Close current quiz", "Set quiz", "Make new quiz"])
-    if index == 0:
-        answers_data = post(
-            URLS["ANSWERS"], {"quizNumber": _get_quiz_number()})
-        view_user_answers(answers_data=answers_data)
-        if y_to_continue("? Grade users' answers?"):
-            check_user_answers(answers_data=answers_data)
-        if y_to_continue("? Would you like to close the current quiz?"):
-            set_quiz(0)
-    elif index == 1:
-        check_user_answers(quiz_number=_get_quiz_number())
-        if y_to_continue("? Would you like to close the current quiz?"):
-            set_quiz(0)
-    elif index == 2:
+# Main
+index, option = picker(["View user answers", "Grade user answers",
+                        "Close current quiz", "Set quiz", "Make new quiz"])
+if index == 0:
+    answers_data = post(
+        URLS["ANSWERS"], {"quizNumber": _get_quiz_number()})
+    view_user_answers(answers_data=answers_data)
+    if y_to_continue("? Grade users' answers?"):
+        check_user_answers(answers_data=answers_data)
+    if y_to_continue("? Would you like to close the current quiz?"):
         set_quiz(0)
-    elif index == 3:
-        set_quiz(input("? Input quiz number to set: "))
-    elif index == 4:
-        print("! When you are prompted to provide the questions' answers, if the question has multiple answers, only input one of them.")
-        quiz_number = create_quiz()
-        if y_to_continue("? Would you like to set the quiz to the one just created?"):
-            set_quiz(quiz_number)
+elif index == 1:
+    check_user_answers(quiz_number=_get_quiz_number())
+    if y_to_continue("? Would you like to close the current quiz?"):
+        set_quiz(0)
+elif index == 2:
+    set_quiz(0)
+elif index == 3:
+    set_quiz(input("? Input quiz number to set: "))
+elif index == 4:
+    print("! When you are prompted to provide the questions' answers, if the question has multiple answers, only input one of them.")
+    quiz_number = create_quiz()
+    if y_to_continue("? Would you like to set the quiz to the one just created?"):
+        set_quiz(quiz_number)
