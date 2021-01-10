@@ -2,3 +2,4 @@ __pycache__/
 *.pyc
 secretstuff.py
 .vscode
+*.egg-info

@@ -1,4 +1,4 @@
 #! /bin/bash
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
 brew install python3
-python3 -m pip install requests
+python3 -m pip install . --user
